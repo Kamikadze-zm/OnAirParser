@@ -31,9 +31,9 @@ public class Parser {
 
     public static List<Command> parse(File file) {
         List<Command> commands = new ArrayList<>();
-        try (Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()),
-                Charset.forName("cp1251"))) {
-            for (String l : (Iterable<String>) stream.iterator()) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()));
+            for (String l : lines) {
                 if (l.isEmpty()) {
                     continue;
                 }
@@ -80,6 +80,7 @@ public class Parser {
             }
         } catch (UncheckedIOException | IOException e) {
             LOG.warn("Cannot open file: " + file.getAbsolutePath(), e);
+            throw new OnAirParserException("Не удалось открыть файл: " + file.getAbsolutePath());
         }
         return commands;
     }
