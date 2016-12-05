@@ -32,7 +32,8 @@ public class Parser {
     public static List<Command> parse(File file) {
         List<Command> commands = new ArrayList<>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()));
+            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), 
+                    Charset.forName("cp1251"));
             for (String l : lines) {
                 if (l.isEmpty()) {
                     continue;
