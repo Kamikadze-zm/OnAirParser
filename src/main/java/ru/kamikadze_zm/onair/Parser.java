@@ -32,56 +32,61 @@ public class Parser {
     public static List<Command> parse(File file) {
         List<Command> commands = new ArrayList<>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), 
+            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),
                     Charset.forName("cp1251"));
-            for (String l : lines) {
-                if (l.isEmpty()) {
-                    continue;
-                }
-                CommandKey commandKey = Command.parseCommandKey(l);
-                Command command;
-                switch (commandKey) {
-                    case COMMENT:
-                        command = new Comment(l);
-                        break;
-                    case MOVIE:
-                        command = new Movie(l);
-                        break;
-                    case PAUSE:
-                        command = new Pause(l);
-                        break;
-                    case SWITCH_SHEDULE:
-                        command = new SwitchShedule();
-                        break;
-                    case TITLE_MOVIE:
-                        command = new TitleMovie(l);
-                        break;
-                    case TITLE_OBJ_LOAD:
-                        command = new TitleObjLoad(l);
-                        break;
-                    case TITLE_OBJ_OFF:
-                        command = new TitleObjOff(l);
-                        break;
-                    case TITLE_OBJ_ON:
-                        command = new TitleObjOn(l);
-                        break;
-                    case TITLING_ON:
-                        command = new TitlingOn();
-                        break;
-                    case WAIT_TIME:
-                        command = new WaitTime(l);
-                        break;
-                    case WAIT_TIME_ACTIVE:
-                        command = new WaitTimeActive(l);
-                        break;
-                    default:
-                        command = null;
-                }
-                commands.add(command);
-            }
-        } catch (UncheckedIOException | IOException e) {
+            return parse(lines);
+        } catch (IOException e) {
             LOG.warn("Cannot open file: " + file.getAbsolutePath(), e);
             throw new OnAirParserException("Не удалось открыть файл: " + file.getAbsolutePath());
+        }
+    }
+
+    public static List<Command> parse(List<String> lines) {
+        List<Command> commands = new ArrayList<>();
+        for (String l : lines) {
+            if (l.isEmpty()) {
+                continue;
+            }
+            CommandKey commandKey = Command.parseCommandKey(l);
+            Command command;
+            switch (commandKey) {
+                case COMMENT:
+                    command = new Comment(l);
+                    break;
+                case MOVIE:
+                    command = new Movie(l);
+                    break;
+                case PAUSE:
+                    command = new Pause(l);
+                    break;
+                case SWITCH_SHEDULE:
+                    command = new SwitchShedule();
+                    break;
+                case TITLE_MOVIE:
+                    command = new TitleMovie(l);
+                    break;
+                case TITLE_OBJ_LOAD:
+                    command = new TitleObjLoad(l);
+                    break;
+                case TITLE_OBJ_OFF:
+                    command = new TitleObjOff(l);
+                    break;
+                case TITLE_OBJ_ON:
+                    command = new TitleObjOn(l);
+                    break;
+                case TITLING_ON:
+                    command = new TitlingOn();
+                    break;
+                case WAIT_TIME:
+                    command = new WaitTime(l);
+                    break;
+                case WAIT_TIME_ACTIVE:
+                    command = new WaitTimeActive(l);
+                    break;
+                default:
+                    command = null;
+            }
+            commands.add(command);
         }
         return commands;
     }
