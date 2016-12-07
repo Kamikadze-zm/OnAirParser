@@ -4,9 +4,12 @@ import java.util.Objects;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
+import ru.kamikadze_zm.onair.command.parameter.IDuration;
+import ru.kamikadze_zm.onair.command.parameter.IFade;
+import ru.kamikadze_zm.onair.command.parameter.IName;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public abstract class TitleObj extends Command {
+public abstract class TitleObj extends Command implements IName, IDuration, IFade {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
     
@@ -43,6 +46,21 @@ public abstract class TitleObj extends Command {
         this.objectName = objectName;
         this.duration = duration;
         this.fadeIn = fadeIn;
+    }
+    
+    @Override
+    public String getName() {
+        return objectName;
+    }
+    
+    @Override
+    public Duration getDuration() {
+        return duration;
+    }
+
+    @Override
+    public Fade getFade() {
+        return fadeIn;
     }
 
     @Override

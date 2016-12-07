@@ -1,6 +1,8 @@
 package ru.kamikadze_zm.onair.command;
 
-public class Comment extends Command {
+import ru.kamikadze_zm.onair.command.parameter.IName;
+
+public class Comment extends Command implements IName {
 
     private final String comment;
     
@@ -12,6 +14,11 @@ public class Comment extends Command {
     public Comment(String comment, boolean isComment) {
         super(CommandKey.COMMENT);
         this.comment = comment;
+    }
+    
+    @Override
+    public String getName() {
+        return comment;
     }
 
     @Override

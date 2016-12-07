@@ -3,9 +3,12 @@ package ru.kamikadze_zm.onair.command;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
+import ru.kamikadze_zm.onair.command.parameter.IDuration;
+import ru.kamikadze_zm.onair.command.parameter.IFade;
+import ru.kamikadze_zm.onair.command.parameter.IName;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class TitleMovie extends Command {
+public class TitleMovie extends Command implements IDuration, IFade, IName {
     
     private static final String DEFAULT_FADE = "0.10";
 
@@ -45,6 +48,25 @@ public class TitleMovie extends Command {
         this.duration = duration;
         this.fadeIn = fadeIn;
         this.fileName = fileName;
+    }
+    
+    @Override
+    public Duration getDuration() {
+        return duration;
+    }
+
+    @Override
+    public Fade getFade() {
+        return fadeIn;
+    }
+
+    @Override
+    public String getName() {
+        int i = fileName.lastIndexOf("\\");
+        if (i > -1) {
+            return fileName.substring(i + 1);
+        }
+        return fileName;
     }
 
     @Override

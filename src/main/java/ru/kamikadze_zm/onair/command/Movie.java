@@ -4,10 +4,14 @@ import java.util.Objects;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
+import ru.kamikadze_zm.onair.command.parameter.IDuration;
+import ru.kamikadze_zm.onair.command.parameter.IFade;
+import ru.kamikadze_zm.onair.command.parameter.IMarkIn;
 import ru.kamikadze_zm.onair.command.parameter.MarkIn;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
+import ru.kamikadze_zm.onair.command.parameter.IName;
 
-public class Movie extends Command {
+public class Movie extends Command implements IMarkIn, IDuration, IFade , IName {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
     
@@ -48,20 +52,32 @@ public class Movie extends Command {
         this.fadeOut = fadeOut;
         this.fileName = fileName;
     }
+    
+    public String getFileName() {
+        return fileName;
+    }
 
+    @Override
     public MarkIn getMarkIn() {
         return markIn;
     }
 
+    @Override
     public Duration getDuration() {
         return duration;
     }
 
-    public Fade getFadeOut() {
+    @Override
+    public Fade getFade() {
         return fadeOut;
     }
 
-    public String getFileName() {
+    @Override
+    public String getName() {
+        int i = fileName.lastIndexOf("\\");
+        if (i > -1) {
+            return fileName.substring(i + 1);
+        }
         return fileName;
     }
 

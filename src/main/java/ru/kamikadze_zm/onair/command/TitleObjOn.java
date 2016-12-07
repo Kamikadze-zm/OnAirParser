@@ -12,4 +12,9 @@ public class TitleObjOn extends TitleObj {
     public TitleObjOn(CommandKey key, String objectName, Duration duration, Fade fadeIn) {
         super(CommandKey.TITLE_OBJ_ON, objectName, duration, fadeIn);
     }
+    
+    @Override
+    public String getName() {
+        return super.getName() + " On";
+    }
 }

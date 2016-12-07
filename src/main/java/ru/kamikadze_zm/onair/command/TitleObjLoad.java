@@ -28,6 +28,11 @@ public class TitleObjLoad extends TitleObj {
     }
 
     @Override
+    public String getName() {
+        return super.getName() + " " + fileName;
+    }
+
+    @Override
     public String toSheduleRow() {
         //titleObjLoad {TitleObject_1} 0:00:05.20 D:\Spt\HappyNew.spt
         return super.toSheduleRow() + " " + fileName;
