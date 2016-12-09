@@ -38,7 +38,7 @@ public abstract class TitleObj extends Command implements IName, IDuration, IFad
     public TitleObj(CommandKey key, String objectName, Duration duration, Fade fadeIn) {
         super(key);
         if (objectName == null) {
-            throw new OnAirParserException("Отсутствует отсутствует название титровального объекта");
+            throw new OnAirParserException("Отсутствует название титровального объекта");
         }
         if (duration == null) {
             duration = new Duration(DEFAULT_DURATION);

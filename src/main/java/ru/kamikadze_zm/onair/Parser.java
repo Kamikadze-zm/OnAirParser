@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 import ru.kamikadze_zm.onair.command.Command;
 import ru.kamikadze_zm.onair.command.Command.CommandKey;
 import ru.kamikadze_zm.onair.command.Comment;
+import ru.kamikadze_zm.onair.command.MarkStart;
+import ru.kamikadze_zm.onair.command.MarkStop;
 import ru.kamikadze_zm.onair.command.Movie;
 import ru.kamikadze_zm.onair.command.Pause;
 import ru.kamikadze_zm.onair.command.SwitchShedule;
@@ -82,6 +84,12 @@ public class Parser {
                     break;
                 case WAIT_TIME_ACTIVE:
                     command = new WaitTimeActive(l);
+                    break;
+                case MARK_START:
+                    command = new MarkStart(l);
+                    break;
+                case MARK_STOP:
+                    command = new MarkStop(l);
                     break;
                 default:
                     command = null;

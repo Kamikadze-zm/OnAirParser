@@ -27,6 +27,12 @@ public abstract class Command {
         if (command.startsWith(CommandKey.TITLE_MOVIE.getKey())) {
             return CommandKey.TITLE_MOVIE;
         }
+        if (command.startsWith(CommandKey.MARK_START.getKey())) {
+            return CommandKey.MARK_START;
+        }
+        if (command.startsWith(CommandKey.MARK_STOP.getKey())) {
+            return CommandKey.MARK_STOP;
+        }
         if (command.startsWith(CommandKey.PAUSE.getKey())) {
             return CommandKey.PAUSE;
         }
@@ -60,6 +66,8 @@ public abstract class Command {
         MOVIE("movie"),
         TITLE_OBJ_LOAD("titleObjLoad"),
         TITLE_MOVIE("titleMovie"),
+        MARK_START("markstart"),
+        MARK_STOP("markstop"),
         TITLE_OBJ_ON("titleObjOn"),
         TITLE_OBJ_OFF("titleObjOff"),
         TITLING_ON("titlingOn");
