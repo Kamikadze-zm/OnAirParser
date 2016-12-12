@@ -54,7 +54,7 @@ public abstract class Command {
         if (command.startsWith(CommandKey.SWITCH_SHEDULE.getKey())) {
             return CommandKey.SWITCH_SHEDULE;
         }
-        return null;
+        return CommandKey.UNKNOWN_COMMAND;
     }
     
     public static enum CommandKey {
@@ -70,7 +70,8 @@ public abstract class Command {
         MARK_STOP("markstop"),
         TITLE_OBJ_ON("titleObjOn"),
         TITLE_OBJ_OFF("titleObjOff"),
-        TITLING_ON("titlingOn");
+        TITLING_ON("titlingOn"),
+        UNKNOWN_COMMAND("unknown");
 
         private final String key;
         
