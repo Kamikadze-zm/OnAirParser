@@ -9,7 +9,7 @@ public class TitleObjOff extends TitleObj {
         super(CommandKey.TITLE_OBJ_OFF, command);
     }
     
-    public TitleObjOff(CommandKey key, String objectName, Duration duration, Fade fadeIn) {
+    public TitleObjOff(String objectName, Duration duration, Fade fadeIn) {
         super(CommandKey.TITLE_OBJ_OFF, objectName, duration, fadeIn);
     }
     

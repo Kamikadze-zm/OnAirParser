@@ -30,6 +30,9 @@ public class Parser {
 
     private static final Logger LOG = LogManager.getLogger(Parser.class);
 
+    private Parser() {
+    }
+
     public static List<Command> parse(File file) {
         if (!file.getName().endsWith(".air")) {
             throw new OnAirParserException("Неверное расширение файла. Требуется *.air");

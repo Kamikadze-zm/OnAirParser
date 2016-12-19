@@ -18,7 +18,7 @@ public class TitleObjLoad extends TitleObj {
         }
     }
     
-    public TitleObjLoad(CommandKey key, String objectName, Duration duration, Fade fadeIn,
+    public TitleObjLoad(String objectName, Duration duration, Fade fadeIn,
             String fileName) {
         super(CommandKey.TITLE_OBJ_LOAD, objectName, duration, fadeIn);
         if (fileName == null) {

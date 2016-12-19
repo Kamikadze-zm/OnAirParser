@@ -9,7 +9,7 @@ public class TitleObjOn extends TitleObj {
         super(CommandKey.TITLE_OBJ_ON, command);
     }
     
-    public TitleObjOn(CommandKey key, String objectName, Duration duration, Fade fadeIn) {
+    public TitleObjOn(String objectName, Duration duration, Fade fadeIn) {
         super(CommandKey.TITLE_OBJ_ON, objectName, duration, fadeIn);
     }
     
