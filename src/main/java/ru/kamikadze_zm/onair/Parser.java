@@ -39,6 +39,7 @@ public class Parser {
         }
 
         try {
+            //читаем файл построчно в виндовс кодировке
             List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),
                     Charset.forName("cp1251"));
             return parse(lines);
@@ -51,11 +52,14 @@ public class Parser {
     public static List<Command> parse(List<String> lines) {
         List<Command> commands = new ArrayList<>();
         for (String l : lines) {
+            //пропуск пустых строк
             if (l.isEmpty()) {
                 continue;
             }
+            //парсим ключ команды
             CommandKey commandKey = Command.parseCommandKey(l);
             Command command;
+            //создаём соответствующую команду
             switch (commandKey) {
                 case COMMENT:
                     command = new Comment(l);

@@ -67,9 +67,9 @@ public abstract class TitleObj extends Command implements IName, IDuration, IFad
     public String toSheduleRow() {
         StringBuilder sb = new StringBuilder(commandKey.getKey()).append(" ");
         sb.append(objectName).append(" ")
-                .append(duration.toString()).append(" ");
+                .append(duration.toString());
         if (fadeIn != null) {
-            sb.append(fadeIn.toString());
+            sb.append(" ").append(fadeIn.toString());
         }
         return sb.toString();
     }

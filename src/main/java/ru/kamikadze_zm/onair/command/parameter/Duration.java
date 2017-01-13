@@ -2,23 +2,39 @@ package ru.kamikadze_zm.onair.command.parameter;
 
 public class Duration {
 
-    private final int hh;
-    private final int mm;
-    private final int ss;
-    private final int xx;
-    private final long duration;
+    private int hh;
+    private int mm;
+    private int ss;
+    private int xx;
+    private long duration;
+    private boolean zeroDuration;
 
     /**
      *
-     * @param duration - строка формата hh:mm:ss.xx
+     * @param duration - строка формата hh:mm:ss.xx или 0
      */
     public Duration(String duration) {
-        String[] parts = duration.split("(:|\\.)");
-        this.hh = Integer.parseInt(parts[0]);
-        this.mm = Integer.parseInt(parts[1]);
-        this.ss = Integer.parseInt(parts[2]);
-        this.xx = Integer.parseInt(parts[3]);
-        this.duration = calculateDuration(hh, mm, ss, xx);
+        if (duration.length() == 1) {
+            int zeroDuration = Integer.parseInt(duration);
+            if (zeroDuration == 0) {
+                this.zeroDuration = true;
+            }
+        } else {
+            String[] parts = duration.split("(:|\\.)");
+            this.hh = Integer.parseInt(parts[0]);
+            this.mm = Integer.parseInt(parts[1]);
+            this.ss = Integer.parseInt(parts[2]);
+            this.xx = Integer.parseInt(parts[3]);
+            this.duration = calculateDuration(hh, mm, ss, xx);
+        }
+    }
+
+    /**
+     *
+     * Нулевая длительность - 0
+     */
+    public Duration() {
+        this.zeroDuration = true;
     }
     
     public Duration(int hh, int mm, int ss, int xx) {
@@ -35,6 +51,9 @@ public class Duration {
 
     @Override
     public String toString() {
+        if (zeroDuration) {
+            return String.valueOf(0);
+        }
         return new StringBuilder()
                 .append(hh)
                 .append(":")
@@ -70,7 +89,7 @@ public class Duration {
         }
         return true;
     }
-    
+
     private static long calculateDuration(int hh, int mm, int ss, int xx) {
         return (((hh * 60 + mm) * 60 + ss) * 100 + xx) * 10;
     }

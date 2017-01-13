@@ -12,6 +12,7 @@ public abstract class Command {
         return commandKey;
     }
     
+    //приведение к строке расписания .air
     public abstract String toSheduleRow();
     
     public static CommandKey parseCommandKey(String command) {
@@ -57,6 +58,7 @@ public abstract class Command {
         return CommandKey.UNKNOWN_COMMAND;
     }
     
+    //ключи команд
     public static enum CommandKey {
         COMMENT("comment"),
         WAIT_TIME("wait time"),
@@ -73,6 +75,7 @@ public abstract class Command {
         TITLING_ON("titlingOn"),
         UNKNOWN_COMMAND("unknown");
 
+        //ключ как в расписании
         private final String key;
         
         private CommandKey(String key) {
