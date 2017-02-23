@@ -15,6 +15,10 @@ public class Comment extends Command implements IName {
         super(CommandKey.COMMENT);
         this.comment = comment;
     }
+
+    public String getComment() {
+        return comment;
+    }
     
     @Override
     public String getName() {
