@@ -23,6 +23,8 @@ import ru.kamikadze_zm.onair.command.TitleObjOff;
 import ru.kamikadze_zm.onair.command.TitleObjOn;
 import ru.kamikadze_zm.onair.command.TitlingOn;
 import ru.kamikadze_zm.onair.command.UnknownCommand;
+import ru.kamikadze_zm.onair.command.WaitFollow;
+import ru.kamikadze_zm.onair.command.WaitOperator;
 import ru.kamikadze_zm.onair.command.WaitTime;
 import ru.kamikadze_zm.onair.command.WaitTimeActive;
 
@@ -35,7 +37,7 @@ public class Parser {
 
     public static List<Command> parse(File file) {
         if (!file.getName().endsWith(".air")) {
-            throw new OnAirParserException("Неверное расширение файла. Требуется *.air");
+            throw new OnAirParserException("Неверное расширение файла: " + file.getName() + ". Требуется *.air");
         }
 
         try {
@@ -99,6 +101,12 @@ public class Parser {
                     break;
                 case MARK_STOP:
                     command = new MarkStop(l);
+                    break;
+                case WAIT_OPERATOR:
+                    command = new WaitOperator(l);
+                    break;
+                case WAIT_FOLLOW:
+                    command = new WaitFollow(l);
                     break;
                 default:
                     command = new UnknownCommand(l);

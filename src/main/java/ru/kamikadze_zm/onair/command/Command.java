@@ -55,6 +55,12 @@ public abstract class Command {
         if (command.startsWith(CommandKey.SWITCH_SHEDULE.getKey())) {
             return CommandKey.SWITCH_SHEDULE;
         }
+        if (command.startsWith(CommandKey.WAIT_OPERATOR.getKey())) {
+            return CommandKey.WAIT_OPERATOR;
+        }
+        if (command.startsWith(CommandKey.WAIT_FOLLOW.getKey())) {
+            return CommandKey.WAIT_FOLLOW;
+        }
         return CommandKey.UNKNOWN_COMMAND;
     }
     
@@ -73,6 +79,8 @@ public abstract class Command {
         TITLE_OBJ_ON("titleObjOn"),
         TITLE_OBJ_OFF("titleObjOff"),
         TITLING_ON("titlingOn"),
+        WAIT_OPERATOR("wait operator"),
+        WAIT_FOLLOW("wait follow"),
         UNKNOWN_COMMAND("unknown");
 
         //ключ как в расписании
