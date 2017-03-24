@@ -35,7 +35,7 @@ public class Parser {
     private Parser() {
     }
 
-    public static List<Command> parse(File file) {
+    public static List<Command> parse(File file) throws OnAirParserException {
         if (!file.getName().endsWith(".air")) {
             throw new OnAirParserException("Неверное расширение файла: " + file.getName() + ". Требуется *.air");
         }

@@ -10,7 +10,7 @@ class RegExps {
     static Pattern duration() {
         //movie 0:00:60.00 D:\Ролики на день\Anons\anons1.avi
         //пробел цифра или 2 цифры : 2 цифры : 2 цифры . 2 цифры пробел
-        return Pattern.compile(" (\\d|\\d\\d]):\\d\\d:\\d\\d\\.\\d\\d ");
+        return Pattern.compile(" (\\d|\\d\\d):\\d\\d:\\d\\d\\.\\d\\d ");
     }
     
     static Pattern parallelDuration() {
@@ -29,13 +29,13 @@ class RegExps {
     static Pattern markIn() {
         //movie <0:42:36.60> 0:10:46.40 [0.12] H:\декабрь\16+\ДоРе Аллегрова.mpeg
         //< цифра или 2 цифры : 2 цифры : 2 цифры . 2 цифры >
-        return Pattern.compile("<(\\d|\\d\\d]):\\d\\d:\\d\\d.\\d\\d>");
+        return Pattern.compile("<(\\d|\\d\\d):\\d\\d:\\d\\d.\\d\\d>");
     }
     
     static Pattern fade() {
         //movie <0:42:36.60> 0:10:46.40 [0.12] H:\декабрь\16+\ДоРе Аллегрова.mpeg
         //[ цифра или 2 цифры . 2 цифры ]
-        return Pattern.compile("\\[(\\d|\\d\\d])\\.\\d\\d\\]");
+        return Pattern.compile("\\[(\\d|\\d\\d)\\.\\d\\d\\]");
     }
     
     static Pattern titleObjName() {
