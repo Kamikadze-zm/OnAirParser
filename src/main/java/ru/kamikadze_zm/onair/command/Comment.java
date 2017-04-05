@@ -1,5 +1,6 @@
 package ru.kamikadze_zm.onair.command;
 
+import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.IName;
 
 public class Comment extends Command implements IName {
@@ -23,6 +24,11 @@ public class Comment extends Command implements IName {
     @Override
     public String getName() {
         return comment;
+    }
+    
+    @Override
+    public Duration getDuration() {
+        return new Duration();
     }
 
     @Override

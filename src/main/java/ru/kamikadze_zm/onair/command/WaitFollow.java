@@ -1,8 +1,8 @@
 package ru.kamikadze_zm.onair.command;
 
-import ru.kamikadze_zm.onair.command.parameter.IName;
+import ru.kamikadze_zm.onair.command.parameter.Duration;
 
-public class WaitFollow extends Command implements IName {
+public class WaitFollow extends Command {
 
     private String comment;
     
@@ -20,6 +20,11 @@ public class WaitFollow extends Command implements IName {
     @Override
     public String getName() {
         return comment;
+    }
+    
+    @Override
+    public Duration getDuration() {
+        return new Duration();
     }
     
     @Override

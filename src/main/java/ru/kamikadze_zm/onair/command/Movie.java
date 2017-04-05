@@ -4,14 +4,12 @@ import java.util.Objects;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
-import ru.kamikadze_zm.onair.command.parameter.IDuration;
 import ru.kamikadze_zm.onair.command.parameter.IFade;
 import ru.kamikadze_zm.onair.command.parameter.IMarkIn;
 import ru.kamikadze_zm.onair.command.parameter.MarkIn;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
-import ru.kamikadze_zm.onair.command.parameter.IName;
 
-public class Movie extends Command implements IMarkIn, IDuration, IFade , IName {
+public class Movie extends Command implements IMarkIn, IFade {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
     

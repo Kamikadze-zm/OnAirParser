@@ -4,11 +4,10 @@ import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
 import ru.kamikadze_zm.onair.command.parameter.IFade;
-import ru.kamikadze_zm.onair.command.parameter.IName;
 import ru.kamikadze_zm.onair.command.parameter.ITime;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class WaitTimeActive extends Command implements ITime, IFade, IName {
+public class WaitTimeActive extends Command implements ITime, IFade {
 
     private static final String DEFAULT_FADE = "5.00";
     
@@ -50,6 +49,11 @@ public class WaitTimeActive extends Command implements ITime, IFade, IName {
     @Override
     public Duration getTime() {
         return time;
+    }
+
+    @Override
+    public Duration getDuration() {
+        return new Duration();
     }
 
     @Override

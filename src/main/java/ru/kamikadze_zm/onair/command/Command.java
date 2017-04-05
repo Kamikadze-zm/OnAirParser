@@ -1,20 +1,23 @@
 package ru.kamikadze_zm.onair.command;
 
-public abstract class Command {
+import ru.kamikadze_zm.onair.command.parameter.IDuration;
+import ru.kamikadze_zm.onair.command.parameter.IName;
+
+public abstract class Command implements IName, IDuration {
 
     protected final CommandKey commandKey;
 
     public Command(CommandKey commandKey) {
         this.commandKey = commandKey;
     }
-    
+
     public CommandKey getCommandKey() {
         return commandKey;
     }
-    
+
     //приведение к строке расписания .air
     public abstract String toSheduleRow();
-    
+
     public static CommandKey parseCommandKey(String command) {
         if (command.startsWith(CommandKey.MOVIE.getKey())) {
             return CommandKey.MOVIE;
@@ -63,7 +66,7 @@ public abstract class Command {
         }
         return CommandKey.UNKNOWN_COMMAND;
     }
-    
+
     //ключи команд
     public static enum CommandKey {
         COMMENT("comment"),
@@ -85,11 +88,11 @@ public abstract class Command {
 
         //ключ как в расписании
         private final String key;
-        
+
         private CommandKey(String key) {
             this.key = key;
         }
-        
+
         public String getKey() {
             return key;
         }

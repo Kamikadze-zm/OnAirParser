@@ -1,13 +1,12 @@
 package ru.kamikadze_zm.onair.command;
 
 import ru.kamikadze_zm.onair.command.parameter.Duration;
-import ru.kamikadze_zm.onair.command.parameter.IDuration;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class Pause extends Command implements IDuration {
+public class Pause extends Command {
 
     private static final String DEFAULT_PAUSE = "0:00:30.00";
-    
+
     private final Duration duration;
 
     public Pause(String command) {
@@ -19,7 +18,7 @@ public class Pause extends Command implements IDuration {
             this.duration = new Duration(DEFAULT_PAUSE);
         }
     }
-    
+
     public Pause(Duration duration) {
         super(CommandKey.PAUSE);
         if (duration != null) {
@@ -28,7 +27,12 @@ public class Pause extends Command implements IDuration {
             this.duration = new Duration(DEFAULT_PAUSE);
         }
     }
-    
+
+    @Override
+    public String getName() {
+        return "";
+    }
+
     @Override
     public Duration getDuration() {
         return duration;

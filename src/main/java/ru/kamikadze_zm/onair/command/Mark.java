@@ -1,10 +1,10 @@
 package ru.kamikadze_zm.onair.command;
 
 import ru.kamikadze_zm.onair.OnAirParserException;
-import ru.kamikadze_zm.onair.command.parameter.IName;
+import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class Mark extends Command implements IName {
+public class Mark extends Command {
 
     private final String markName;
     private String comment;
@@ -30,6 +30,11 @@ public class Mark extends Command implements IName {
     @Override
     public String getName() {
         return comment;
+    }
+    
+    @Override
+    public Duration getDuration() {
+        return new Duration();
     }
 
     @Override

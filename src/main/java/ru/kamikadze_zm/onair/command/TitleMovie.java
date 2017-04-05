@@ -3,12 +3,10 @@ package ru.kamikadze_zm.onair.command;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
-import ru.kamikadze_zm.onair.command.parameter.IDuration;
 import ru.kamikadze_zm.onair.command.parameter.IFade;
-import ru.kamikadze_zm.onair.command.parameter.IName;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class TitleMovie extends Command implements IDuration, IFade, IName {
+public class TitleMovie extends Command implements IFade{
     
     private static final String DEFAULT_FADE = "0.10";
 
