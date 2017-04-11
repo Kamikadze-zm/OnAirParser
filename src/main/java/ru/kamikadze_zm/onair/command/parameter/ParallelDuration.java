@@ -14,6 +14,10 @@ public class ParallelDuration extends Duration {
         super(hh, mm, ss, xx);
     }
     
+    public ParallelDuration(long ms) {
+        super(ms);
+    }
+    
     @Override
     public String toString() {
         return "(" + super.toString() + ")";

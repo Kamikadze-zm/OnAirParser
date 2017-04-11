@@ -13,6 +13,10 @@ public class MarkIn extends Duration {
     public MarkIn(int hh, int mm, int ss, int xx) {
         super(hh, mm, ss, xx);
     }
+    
+    public MarkIn(long ms) {
+        super(ms);
+    }
 
     @Override
     public String toString() {

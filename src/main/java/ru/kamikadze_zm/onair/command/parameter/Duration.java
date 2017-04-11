@@ -44,6 +44,15 @@ public class Duration {
         this.xx = xx;
         this.duration = calculateDuration(hh, mm, ss, xx);
     }
+    
+    public Duration(long ms) {
+        this.duration = ms;
+        int[] parts = calculateDuration(ms);
+        this.hh = parts[0];
+        this.mm = parts[1];
+        this.ss = parts[2];
+        this.xx = parts[3];
+    }
 
     public long getDuration() {
         return duration;
@@ -92,5 +101,21 @@ public class Duration {
 
     private static long calculateDuration(int hh, int mm, int ss, int xx) {
         return (((hh * 60 + mm) * 60 + ss) * 100 + xx) * 10;
+    }
+    
+    private static int[] calculateDuration(long duration) {
+        int[] parts = new int[4];
+        //в сотых милисекундах (на дробную часть пока пофиг)
+        long xx = duration / 10;
+        
+        long ss = xx / 100;
+        long mm = ss / 60;
+        long hh = mm /60;
+        
+        parts[3] = (int) xx % 100;
+        parts[2] = (int) ss % 60;
+        parts[1] = (int) mm % 60;
+        parts[0] = (int) hh % 60;
+        return parts;
     }
 }
