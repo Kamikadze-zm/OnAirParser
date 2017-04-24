@@ -27,6 +27,7 @@ import ru.kamikadze_zm.onair.command.WaitFollow;
 import ru.kamikadze_zm.onair.command.WaitOperator;
 import ru.kamikadze_zm.onair.command.WaitTime;
 import ru.kamikadze_zm.onair.command.WaitTimeActive;
+import ru.kamikadze_zm.onair.command.parameter.Duration;
 
 public class Parser {
 
@@ -36,19 +37,7 @@ public class Parser {
     }
 
     public static List<Command> parse(File file) throws OnAirParserException {
-        if (!file.getName().endsWith(".air")) {
-            throw new OnAirParserException("Неверное расширение файла: " + file.getName() + ". Требуется *.air");
-        }
-
-        try {
-            //читаем файл построчно в виндовс кодировке
-            List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),
-                    Charset.forName("cp1251"));
-            return parse(lines);
-        } catch (IOException e) {
-            LOG.warn("Cannot open file: " + file.getAbsolutePath(), e);
-            throw new OnAirParserException("Не удалось открыть файл: " + file.getAbsolutePath());
-        }
+        return parse(getLinesFromFile(file));
     }
 
     public static List<Command> parse(List<String> lines) {
@@ -58,60 +47,29 @@ public class Parser {
             if (l.isEmpty()) {
                 continue;
             }
-            //парсим ключ команды
-            CommandKey commandKey = Command.parseCommandKey(l);
-            Command command;
-            //создаём соответствующую команду
-            switch (commandKey) {
-                case COMMENT:
-                    command = new Comment(l);
-                    break;
-                case MOVIE:
-                    command = new Movie(l);
-                    break;
-                case PAUSE:
-                    command = new Pause(l);
-                    break;
-                case SWITCH_SHEDULE:
-                    command = new SwitchShedule();
-                    break;
-                case TITLE_MOVIE:
-                    command = new TitleMovie(l);
-                    break;
-                case TITLE_OBJ_LOAD:
-                    command = new TitleObjLoad(l);
-                    break;
-                case TITLE_OBJ_OFF:
-                    command = new TitleObjOff(l);
-                    break;
-                case TITLE_OBJ_ON:
-                    command = new TitleObjOn(l);
-                    break;
-                case TITLING_ON:
-                    command = new TitlingOn();
-                    break;
-                case WAIT_TIME:
-                    command = new WaitTime(l);
-                    break;
-                case WAIT_TIME_ACTIVE:
-                    command = new WaitTimeActive(l);
-                    break;
-                case MARK_START:
-                    command = new MarkStart(l);
-                    break;
-                case MARK_STOP:
-                    command = new MarkStop(l);
-                    break;
-                case WAIT_OPERATOR:
-                    command = new WaitOperator(l);
-                    break;
-                case WAIT_FOLLOW:
-                    command = new WaitFollow(l);
-                    break;
-                default:
-                    command = new UnknownCommand(l);
+            commands.add(parseCommand(l));
+        }
+        return commands;
+    }
+
+    public static List<CommandTime> parseWithTime(File file) throws OnAirParserException {
+        return parseWithTime(getLinesFromFile(file));
+    }
+
+    public static List<CommandTime> parseWithTime(List<String> lines) {
+        List<CommandTime> commands = new ArrayList<>();
+        Duration currTime = new Duration();
+        for (String l : lines) {
+            //пропуск пустых строк
+            if (l.isEmpty()) {
+                continue;
             }
-            commands.add(command);
+            Command c = parseCommand(l);
+            if (CommandKey.WAIT_TIME == c.getCommandKey() || CommandKey.WAIT_TIME_ACTIVE == c.getCommandKey()) {
+                currTime = ((WaitTime) c).getTime();
+            }
+            commands.add(new CommandTime(c, currTime));
+            currTime = currTime.add(c.getDuration());
         }
         return commands;
     }
@@ -123,4 +81,76 @@ public class Parser {
         }
         return schedule;
     }
+
+    private static List<String> getLinesFromFile(File file) throws OnAirParserException {
+        if (!file.getName().endsWith(".air")) {
+            throw new OnAirParserException("Неверное расширение файла: " + file.getName() + ". Требуется *.air");
+        }
+
+        try {
+            //читаем файл построчно в виндовс кодировке
+            return Files.readAllLines(Paths.get(file.getAbsolutePath()), Charset.forName("cp1251"));
+        } catch (IOException e) {
+            LOG.warn("Cannot open file: " + file.getAbsolutePath(), e);
+            throw new OnAirParserException("Не удалось открыть файл: " + file.getAbsolutePath());
+        }
+    }
+
+    private static Command parseCommand(String line) {
+        //парсим ключ команды
+        CommandKey commandKey = Command.parseCommandKey(line);
+        Command command;
+        //создаём соответствующую команду
+        switch (commandKey) {
+            case COMMENT:
+                command = new Comment(line);
+                break;
+            case MOVIE:
+                command = new Movie(line);
+                break;
+            case PAUSE:
+                command = new Pause(line);
+                break;
+            case SWITCH_SHEDULE:
+                command = new SwitchShedule();
+                break;
+            case TITLE_MOVIE:
+                command = new TitleMovie(line);
+                break;
+            case TITLE_OBJ_LOAD:
+                command = new TitleObjLoad(line);
+                break;
+            case TITLE_OBJ_OFF:
+                command = new TitleObjOff(line);
+                break;
+            case TITLE_OBJ_ON:
+                command = new TitleObjOn(line);
+                break;
+            case TITLING_ON:
+                command = new TitlingOn();
+                break;
+            case WAIT_TIME:
+                command = new WaitTime(line);
+                break;
+            case WAIT_TIME_ACTIVE:
+                command = new WaitTimeActive(line);
+                break;
+            case MARK_START:
+                command = new MarkStart(line);
+                break;
+            case MARK_STOP:
+                command = new MarkStop(line);
+                break;
+            case WAIT_OPERATOR:
+                command = new WaitOperator(line);
+                break;
+            case WAIT_FOLLOW:
+                command = new WaitFollow(line);
+                break;
+            default:
+                command = new UnknownCommand(line);
+        }
+        return command;
+    }
+
 }

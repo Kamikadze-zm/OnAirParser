@@ -57,11 +57,18 @@ public class Duration {
     public long getDuration() {
         return duration;
     }
+    
+    public Duration add(Duration duration) {
+        return new Duration(this.duration + duration.getDuration());
+    }
 
     @Override
     public String toString() {
         if (zeroDuration) {
             return String.valueOf(0);
+        }
+        if (hh >= 24) {
+            hh = hh % 24;
         }
         return new StringBuilder()
                 .append(hh)

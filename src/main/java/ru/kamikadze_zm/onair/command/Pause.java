@@ -1,7 +1,6 @@
 package ru.kamikadze_zm.onair.command;
 
 import ru.kamikadze_zm.onair.command.parameter.Duration;
-import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
 public class Pause extends Command {
 
@@ -11,9 +10,10 @@ public class Pause extends Command {
 
     public Pause(String command) {
         super(CommandKey.PAUSE);
-        Duration duration = ParameterParser.getDuration(command);
-        if (duration != null) {
-            this.duration = duration;
+        //pause 0:03:20.00
+        String durStr = command.substring(6);
+        if (!durStr.isEmpty()) {
+            this.duration = new Duration(durStr);
         } else {
             this.duration = new Duration(DEFAULT_PAUSE);
         }

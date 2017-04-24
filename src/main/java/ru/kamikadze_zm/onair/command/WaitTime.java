@@ -7,16 +7,20 @@ import ru.kamikadze_zm.onair.command.parameter.IFade;
 import ru.kamikadze_zm.onair.command.parameter.ITime;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class WaitTime extends Command implements ITime, IFade{
+public class WaitTime extends Command implements ITime, IFade {
 
     private static final String DEFAULT_FADE = "5.00";
 
-    private final Duration time;
-    private final Fade fadeOut;
-    private String comment;
+    protected final Duration time;
+    protected final Fade fadeOut;
+    protected String comment;
 
     public WaitTime(String command) {
-        super(CommandKey.WAIT_TIME);
+        this(CommandKey.WAIT_TIME, command);
+    }
+    
+    public WaitTime(CommandKey key, String command) {
+        super(key);
         this.time = ParameterParser.getDuration(command);
         if (this.time == null) {
             throw new OnAirParserException("Отсутствует время старта");
@@ -27,14 +31,24 @@ public class WaitTime extends Command implements ITime, IFade{
         } else {
             this.fadeOut = new Fade(DEFAULT_FADE);
         }
-        int commentIndex = command.indexOf("]") + 2;
-        if (commentIndex < command.length()) {
+        int commentIndex = -1;
+        if (CommandKey.WAIT_TIME == key) {
+           commentIndex = command.indexOf("]") + 2; 
+        } else {
+            commentIndex = command.indexOf("]") + 9;
+        }
+        
+        if (commentIndex < command.length() && commentIndex > 0) {
             this.comment = command.substring(commentIndex);
         }
     }
 
     public WaitTime(Duration time, Fade fadeOut, String comment) {
-        super(CommandKey.WAIT_TIME);
+        this(CommandKey.WAIT_TIME, time, fadeOut, comment);
+    }
+
+    protected WaitTime(CommandKey key, Duration time, Fade fadeOut, String comment) {
+        super(key);
         if (time == null) {
             throw new OnAirParserException("Отсутствует время старта");
         }
@@ -45,7 +59,7 @@ public class WaitTime extends Command implements ITime, IFade{
         this.fadeOut = fadeOut;
         this.comment = comment;
     }
-    
+
     @Override
     public Duration getTime() {
         return time;
