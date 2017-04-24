@@ -59,6 +59,9 @@ public class Duration {
     }
     
     public Duration add(Duration duration) {
+        if (duration instanceof ParallelDuration) {
+            return new Duration(this.duration);
+        }
         return new Duration(this.duration + duration.getDuration());
     }
 
