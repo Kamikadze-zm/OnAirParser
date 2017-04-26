@@ -117,10 +117,10 @@ public class Duration {
         int[] parts = new int[4];
         //в сотых милисекундах (на дробную часть пока пофиг)
         long xx = duration / 10;
-        
-        long ss = xx / 100;
-        long mm = ss / 60;
-        long hh = mm /60;
+        //уже не пофиг
+        long ss = Math.round(xx / 100.0);
+        long mm = Math.round(ss / 60.0);
+        long hh = Math.round(mm / 60.0);
         
         parts[3] = (int) xx % 100;
         parts[2] = (int) ss % 60;
