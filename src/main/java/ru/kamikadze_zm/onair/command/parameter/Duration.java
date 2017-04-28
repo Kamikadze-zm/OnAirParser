@@ -115,17 +115,31 @@ public class Duration {
     
     private static int[] calculateDuration(long duration) {
         int[] parts = new int[4];
-        //в сотых милисекундах (на дробную часть пока пофиг)
-        long xx = duration / 10;
-        //уже не пофиг
-        long ss = Math.round(xx / 100.0);
-        long mm = Math.round(ss / 60.0);
-        long hh = Math.round(mm / 60.0);
         
-        parts[3] = (int) xx % 100;
-        parts[2] = (int) ss % 60;
-        parts[1] = (int) mm % 60;
-        parts[0] = (int) hh % 60;
+        //множители в милисекундах
+        final int hhF = 3600000;
+        final int mmF = 60000;
+        final int ssF = 1000;
+        final int xxF = 10;
+        
+        double hh = duration / hhF;
+        parts[0] = (int) hh;//Math.round(hh);
+        
+        duration -= parts[0] * hhF;
+        
+        double mm = duration / mmF;
+        parts[1] = (int) mm;//Math.round(mm);
+        
+        duration -= parts[1] * mmF;
+        
+        double ss = duration / ssF;
+        parts[2] = (int) ss;//Math.round(ss);
+        
+        duration -= parts[2] * ssF;
+        
+        double xx = duration / xxF;
+        parts[3] = (int) xx;//Math.round(xx);
+
         return parts;
     }
 }
