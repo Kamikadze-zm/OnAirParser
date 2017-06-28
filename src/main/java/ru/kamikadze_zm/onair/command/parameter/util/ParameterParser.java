@@ -7,11 +7,20 @@ import ru.kamikadze_zm.onair.command.parameter.Fade;
 import ru.kamikadze_zm.onair.command.parameter.MarkIn;
 import ru.kamikadze_zm.onair.command.parameter.ParallelDuration;
 
+/**
+ *
+ * Парсер параметров команды
+ */
 public class ParameterParser {
 
     private ParameterParser() {
     }
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     * @return длительность (или параллельную, или нулевую) если есть, иначе {@code null}
+     */
     public static Duration getDuration(String command) {
         //сначала проверяем параллельное выполнение
         Matcher pDurMatcher = RegExps.parallelDuration().matcher(command);
@@ -36,8 +45,11 @@ public class ParameterParser {
         return null;
     }
 
-    
-
+    /**
+     *
+     * @param command команда в виде строки расписания
+     * @return MarkIn если есть, иначе {@code null}
+     */
     public static MarkIn getMarkIn(String command) {
         Matcher matcher = RegExps.markIn().matcher(command);
         if (matcher.find()) {
@@ -49,6 +61,11 @@ public class ParameterParser {
         }
     }
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     * @return Fade если есть, иначе {@code null}
+     */
     public static Fade getFade(String command) {
         Matcher matcher = RegExps.fade().matcher(command);
         if (matcher.find()) {
@@ -60,6 +77,11 @@ public class ParameterParser {
         }
     }
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     * @return имя файла если есть, иначе {@code null}
+     */
     public static String getFileName(String command) {
         Matcher fadeMatcher = RegExps.fade().matcher(command);
         //movie <0:42:36.60> 0:10:46.40 [0.12] H:\декабрь\16+\ДоРе Аллегрова.mpeg
@@ -92,6 +114,11 @@ public class ParameterParser {
         }
     }
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     * @return название титровального объекта
+     */
     public static String getTitleObjName(String command) {
         Matcher matcher = RegExps.titleObjName().matcher(command);
         if (matcher.find()) {

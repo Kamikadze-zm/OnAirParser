@@ -1,5 +1,9 @@
 package ru.kamikadze_zm.onair.command.parameter;
 
+/**
+ *
+ * Длительность исчезновения/появления
+ */
 public class Fade {
 
     private final int ss;
@@ -16,13 +20,22 @@ public class Fade {
         this.xx = Integer.parseInt(parts[1]);
         this.fade = calculateFadeDuration(ss, xx);
     }
-    
+
+    /**
+     *
+     * @param ss секунды
+     * @param xx сотые секунды
+     */
     public Fade(int ss, int xx) {
         this.ss = ss;
         this.xx = xx;
         this.fade = calculateFadeDuration(ss, xx);
     }
 
+    /**
+     *
+     * @return Длительность исчезновения/появления в милисекундах
+     */
     public long getFade() {
         return fade;
     }
@@ -62,7 +75,7 @@ public class Fade {
         }
         return true;
     }
-    
+
     private static long calculateFadeDuration(int ss, int xx) {
         return (ss * 100 + xx) * 10;
     }

@@ -3,12 +3,26 @@ package ru.kamikadze_zm.onair.command;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
 
+/**
+ *
+ * Команда активного ожидания заданного времени
+ */
 public class WaitTimeActive extends WaitTime {
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     */
     public WaitTimeActive(String command) {
         super(CommandKey.WAIT_TIME_ACTIVE, command);
     }
-    
+
+    /**
+     *
+     * @param time время старта
+     * @param fadeOut фейд
+     * @param comment комментарий
+     */
     public WaitTimeActive(Duration time, Fade fadeOut, String comment) {
         super(CommandKey.WAIT_TIME_ACTIVE, time, fadeOut, comment);
     }

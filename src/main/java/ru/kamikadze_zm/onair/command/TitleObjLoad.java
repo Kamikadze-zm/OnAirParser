@@ -6,10 +6,18 @@ import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
+/**
+ *
+ * Команда загрузки задания в титровальный объект
+ */
 public class TitleObjLoad extends TitleObj {
 
     private final String fileName;
 
+    /**
+     *
+     * @param command команда в виде строки
+     */
     public TitleObjLoad(String command) {
         super(CommandKey.TITLE_OBJ_LOAD, command);
         this.fileName = ParameterParser.getFileName(command);
@@ -17,7 +25,14 @@ public class TitleObjLoad extends TitleObj {
             throw new OnAirParserException("Отсутствует имя файла задания");
         }
     }
-    
+
+    /**
+     *
+     * @param objectName название титровального объекта в фигурных скобках {}
+     * @param duration длительность
+     * @param fadeIn фейд
+     * @param fileName название файла
+     */
     public TitleObjLoad(String objectName, Duration duration, Fade fadeIn,
             String fileName) {
         super(CommandKey.TITLE_OBJ_LOAD, objectName, duration, fadeIn);

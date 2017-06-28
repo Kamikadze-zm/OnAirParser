@@ -6,14 +6,22 @@ import ru.kamikadze_zm.onair.command.parameter.Fade;
 import ru.kamikadze_zm.onair.command.parameter.IFade;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
-public class TitleMovie extends Command implements IFade{
-    
+/**
+ *
+ * Полноэкранный титр – фильм с прозрачностью
+ */
+public class TitleMovie extends Command implements IFade {
+
     private static final String DEFAULT_FADE = "0.10";
 
     private final Duration duration;
     private final Fade fadeIn;
     private final String fileName;
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     */
     public TitleMovie(String command) {
         super(CommandKey.TITLE_MOVIE);
         this.duration = ParameterParser.getDuration(command);
@@ -31,7 +39,13 @@ public class TitleMovie extends Command implements IFade{
             throw new OnAirParserException("Отсутствует имя файла");
         }
     }
-    
+
+    /**
+     *
+     * @param duration длительность
+     * @param fadeIn фейд
+     * @param fileName название файла
+     */
     public TitleMovie(Duration duration, Fade fadeIn, String fileName) {
         super(CommandKey.TITLE_MOVIE);
         if (duration == null) {
@@ -47,7 +61,7 @@ public class TitleMovie extends Command implements IFade{
         this.fadeIn = fadeIn;
         this.fileName = fileName;
     }
-    
+
     @Override
     public Duration getDuration() {
         return duration;

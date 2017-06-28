@@ -12,12 +12,16 @@ import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 public class Movie extends Command implements IMarkIn, IFade {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
-    
+
     private final MarkIn markIn;
     private final Duration duration;
     private final Fade fadeOut;
     private final String fileName;
 
+    /**
+     *
+     * @param command команда в виде строки раписания
+     */
     public Movie(String command) {
         super(CommandKey.MOVIE);
         this.markIn = ParameterParser.getMarkIn(command);
@@ -36,7 +40,14 @@ public class Movie extends Command implements IMarkIn, IFade {
             throw new OnAirParserException("Отсутствует имя файла");
         }
     }
-    
+
+    /**
+     *
+     * @param markIn MarkIn
+     * @param duration длительность
+     * @param fadeOut фейд
+     * @param fileName название файла
+     */
     public Movie(MarkIn markIn, Duration duration, Fade fadeOut, String fileName) {
         super(CommandKey.MOVIE);
         if (duration == null) {
@@ -50,7 +61,11 @@ public class Movie extends Command implements IMarkIn, IFade {
         this.fadeOut = fadeOut;
         this.fileName = fileName;
     }
-    
+
+    /**
+     *
+     * @return название файла
+     */
     public String getFileName() {
         return fileName;
     }

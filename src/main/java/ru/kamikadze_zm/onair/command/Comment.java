@@ -3,20 +3,37 @@ package ru.kamikadze_zm.onair.command;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.IName;
 
+/**
+ *
+ * Команда комментприя
+ */
 public class Comment extends Command implements IName {
 
     private final String comment;
     
+    /**
+     *
+     * @param command команда в виде строки расписания
+     */
     public Comment(String command) {
         super(CommandKey.COMMENT);
         this.comment = command.substring(10);
     }
     
+    /**
+     *
+     * @param comment текст комментария
+     * @param isComment бесполезный параметр
+     */
     public Comment(String comment, boolean isComment) {
         super(CommandKey.COMMENT);
         this.comment = comment;
     }
 
+    /**
+     *
+     * @return Текст комментария
+     */
     public String getComment() {
         return comment;
     }

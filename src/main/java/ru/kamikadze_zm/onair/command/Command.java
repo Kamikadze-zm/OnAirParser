@@ -3,21 +3,44 @@ package ru.kamikadze_zm.onair.command;
 import ru.kamikadze_zm.onair.command.parameter.IDuration;
 import ru.kamikadze_zm.onair.command.parameter.IName;
 
+/**
+ *
+ * Базовый класс команды. Содержит: ключ команды, перечисление возможных ключей команды, метод парсинга команды, абстрактный метод формирания команды
+ * в виде строки расписания
+ */
 public abstract class Command implements IName, IDuration {
 
     protected final CommandKey commandKey;
 
-    public Command(CommandKey commandKey) {
+    /**
+     *
+     * @param commandKey ключ команды
+     */
+    protected Command(CommandKey commandKey) {
         this.commandKey = commandKey;
     }
 
+    /**
+     *
+     * @return Ключ команды
+     */
     public CommandKey getCommandKey() {
         return commandKey;
     }
 
-    //приведение к строке расписания .air
+    /**
+     * Преобразует команду к строке расписания .air
+     *
+     * @return команду в виде строки расписания
+     */
     public abstract String toSheduleRow();
 
+    /**
+     * Парсит команду в виде строки расписания и возвращает соответсятвующий ключ
+     *
+     * @param command команда в виде строки расписания
+     * @return Ключ команды
+     */
     public static CommandKey parseCommandKey(String command) {
         if (command.startsWith(CommandKey.MOVIE.getKey())) {
             return CommandKey.MOVIE;
@@ -67,7 +90,9 @@ public abstract class Command implements IName, IDuration {
         return CommandKey.UNKNOWN_COMMAND;
     }
 
-    //ключи команд
+    /**
+     * Ключи команд
+     */
     public static enum CommandKey {
         COMMENT("comment"),
         WAIT_TIME("wait time"),
@@ -93,6 +118,10 @@ public abstract class Command implements IName, IDuration {
             this.key = key;
         }
 
+        /**
+         *
+         * @return ключ команды, как в расписании
+         */
         public String getKey() {
             return key;
         }

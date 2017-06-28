@@ -4,11 +4,20 @@ import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
+/**
+ *
+ * @author Базовый класс метки
+ */
 public class Mark extends Command {
 
     private final String markName;
     private String comment;
 
+    /**
+     *
+     * @param key ключ команды
+     * @param command команда в виде строки расписания
+     */
     public Mark(CommandKey key, String command) {
         super(key);
         this.markName = ParameterParser.getTitleObjName(command);
@@ -21,6 +30,12 @@ public class Mark extends Command {
         }
     }
 
+    /**
+     *
+     * @param commandKey ключ команды
+     * @param markName название метки
+     * @param comment комментарий
+     */
     public Mark(CommandKey commandKey, String markName, String comment) {
         super(commandKey);
         this.markName = markName;
@@ -31,7 +46,7 @@ public class Mark extends Command {
     public String getName() {
         return comment;
     }
-    
+
     @Override
     public Duration getDuration() {
         return new Duration();

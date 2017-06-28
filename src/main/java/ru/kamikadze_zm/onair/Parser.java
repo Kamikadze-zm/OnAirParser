@@ -29,6 +29,10 @@ import ru.kamikadze_zm.onair.command.WaitTime;
 import ru.kamikadze_zm.onair.command.WaitTimeActive;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 
+/**
+ *
+ * Парсер текстового расписания *.air
+ */
 public class Parser {
 
     private static final Logger LOG = LogManager.getLogger(Parser.class);
@@ -36,10 +40,23 @@ public class Parser {
     private Parser() {
     }
 
+    /**
+     * Парсит файл расписания
+     *
+     * @param file файл расписания *.air
+     * @return Список команд
+     * @throws OnAirParserException в случаях неверного расширения файла или ошибок чтения файла
+     */
     public static List<Command> parse(File file) throws OnAirParserException {
         return parse(getLinesFromFile(file));
     }
 
+    /**
+     * Парсит список строк расписания
+     *
+     * @param lines список команд в виде строк
+     * @return Список команд
+     */
     public static List<Command> parse(List<String> lines) {
         List<Command> commands = new ArrayList<>();
         for (String l : lines) {
@@ -52,10 +69,23 @@ public class Parser {
         return commands;
     }
 
+    /**
+     * Парсит файл расписания в список команд со временем их старта
+     *
+     * @param file файл расписания *.air
+     * @return Список команд со временем их старта
+     * @throws OnAirParserException в случаях неверного расширения файла или ошибок чтения файла
+     */
     public static List<CommandTime> parseWithTime(File file) throws OnAirParserException {
         return parseWithTime(getLinesFromFile(file));
     }
 
+    /**
+     * Парсит список строк расписания в список команд со временем их старта
+     *
+     * @param lines список команд в виде строк
+     * @return Список команд со временем их старта
+     */
     public static List<CommandTime> parseWithTime(List<String> lines) {
         List<CommandTime> commands = new ArrayList<>();
         Duration currTime = new Duration();
@@ -74,6 +104,12 @@ public class Parser {
         return commands;
     }
 
+    /**
+     * Формирует список строк расписания
+     *
+     * @param commands список команд
+     * @return список строк расписания
+     */
     public static List<String> buildSchedule(List<Command> commands) {
         List<String> schedule = new ArrayList<>();
         for (Command c : commands) {

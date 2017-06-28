@@ -2,12 +2,20 @@ package ru.kamikadze_zm.onair.command;
 
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 
+/**
+ *
+ * Пауза
+ */
 public class Pause extends Command {
 
     private static final String DEFAULT_PAUSE = "0:00:30.00";
 
     private final Duration duration;
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     */
     public Pause(String command) {
         super(CommandKey.PAUSE);
         //pause 0:03:20.00
@@ -19,6 +27,10 @@ public class Pause extends Command {
         }
     }
 
+    /**
+     *
+     * @param duration длительность паузы
+     */
     public Pause(Duration duration) {
         super(CommandKey.PAUSE);
         if (duration != null) {

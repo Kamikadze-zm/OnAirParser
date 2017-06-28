@@ -2,6 +2,10 @@ package ru.kamikadze_zm.onair.command;
 
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 
+/**
+ *
+ * Команда включения титров. В расписании голубая буква Т
+ */
 public class TitlingOn extends Command {
 
     public TitlingOn() {

@@ -1,5 +1,9 @@
 package ru.kamikadze_zm.onair.command.parameter;
 
+/**
+ *
+ * Длительность
+ */
 public class Duration {
 
     private int hh;
@@ -36,7 +40,14 @@ public class Duration {
     public Duration() {
         this.zeroDuration = true;
     }
-    
+
+    /**
+     *
+     * @param hh часы
+     * @param mm минуты
+     * @param ss секунды
+     * @param xx сотые секунды
+     */
     public Duration(int hh, int mm, int ss, int xx) {
         this.hh = hh;
         this.mm = mm;
@@ -44,7 +55,11 @@ public class Duration {
         this.xx = xx;
         this.duration = calculateDuration(hh, mm, ss, xx);
     }
-    
+
+    /**
+     *
+     * @param ms длительность в милисекундах
+     */
     public Duration(long ms) {
         this.duration = ms;
         int[] parts = calculateDuration(ms);
@@ -54,10 +69,20 @@ public class Duration {
         this.xx = parts[3];
     }
 
+    /**
+     *
+     * @return Длительность в милисекундах
+     */
     public long getDuration() {
         return duration;
     }
-    
+
+    /**
+     * Прибавляет указанную длительность к текущей
+     *
+     * @param duration длительность, которую нужно прибавить
+     * @return Новую длительность
+     */
     public Duration add(Duration duration) {
         if (duration instanceof ParallelDuration) {
             return new Duration(this.duration);
@@ -112,31 +137,31 @@ public class Duration {
     private static long calculateDuration(int hh, int mm, int ss, int xx) {
         return (((hh * 60 + mm) * 60 + ss) * 100 + xx) * 10;
     }
-    
+
     private static int[] calculateDuration(long duration) {
         int[] parts = new int[4];
-        
+
         //множители в милисекундах
         final int hhF = 3600000;
         final int mmF = 60000;
         final int ssF = 1000;
         final int xxF = 10;
-        
+
         double hh = duration / hhF;
         parts[0] = (int) hh;//Math.round(hh);
-        
+
         duration -= parts[0] * hhF;
-        
+
         double mm = duration / mmF;
         parts[1] = (int) mm;//Math.round(mm);
-        
+
         duration -= parts[1] * mmF;
-        
+
         double ss = duration / ssF;
         parts[2] = (int) ss;//Math.round(ss);
-        
+
         duration -= parts[2] * ssF;
-        
+
         double xx = duration / xxF;
         parts[3] = (int) xx;//Math.round(xx);
 

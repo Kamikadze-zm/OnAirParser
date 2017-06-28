@@ -7,14 +7,23 @@ import ru.kamikadze_zm.onair.command.parameter.Fade;
 import ru.kamikadze_zm.onair.command.parameter.IFade;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
+/**
+ *
+ * Базовый класс титровального объекта
+ */
 public abstract class TitleObj extends Command implements IFade {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
-    
+
     private final String objectName;
     private final Duration duration;
     private final Fade fadeIn;
 
+    /**
+     *
+     * @param key ключ команды
+     * @param command команда в виде строки расписания
+     */
     public TitleObj(CommandKey key, String command) {
         super(key);
         this.objectName = ParameterParser.getTitleObjName(command);
@@ -32,7 +41,14 @@ public abstract class TitleObj extends Command implements IFade {
 //            throw new RuntimeException("Отсутствует время появления");
 //        }
     }
-    
+
+    /**
+     *
+     * @param key ключ команды
+     * @param objectName название титровального объекта в фигурных скобках {}
+     * @param duration длительность
+     * @param fadeIn фейд
+     */
     public TitleObj(CommandKey key, String objectName, Duration duration, Fade fadeIn) {
         super(key);
         if (objectName == null) {
@@ -45,12 +61,12 @@ public abstract class TitleObj extends Command implements IFade {
         this.duration = duration;
         this.fadeIn = fadeIn;
     }
-    
+
     @Override
     public String getName() {
         return objectName;
     }
-    
+
     @Override
     public Duration getDuration() {
         return duration;

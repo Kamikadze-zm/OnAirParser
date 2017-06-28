@@ -1,5 +1,9 @@
 package ru.kamikadze_zm.onair.command.parameter;
 
+/**
+ *
+ * Метка старта видео
+ */
 public class MarkIn extends Duration {
 
     /**
@@ -10,10 +14,21 @@ public class MarkIn extends Duration {
         super(duration);
     }
 
+    /**
+     *
+     * @param hh часы
+     * @param mm минуты
+     * @param ss секунды
+     * @param xx сотые секунды
+     */
     public MarkIn(int hh, int mm, int ss, int xx) {
         super(hh, mm, ss, xx);
     }
-    
+
+    /**
+     *
+     * @param ms метка старта в милисекундах
+     */
     public MarkIn(long ms) {
         super(ms);
     }

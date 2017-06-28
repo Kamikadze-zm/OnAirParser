@@ -7,6 +7,10 @@ import ru.kamikadze_zm.onair.command.parameter.IFade;
 import ru.kamikadze_zm.onair.command.parameter.ITime;
 import ru.kamikadze_zm.onair.command.parameter.util.ParameterParser;
 
+/**
+ *
+ * Команда пассивного ожидания заданного времени
+ */
 public class WaitTime extends Command implements ITime, IFade {
 
     private static final String DEFAULT_FADE = "5.00";
@@ -15,10 +19,19 @@ public class WaitTime extends Command implements ITime, IFade {
     protected final Fade fadeOut;
     protected String comment;
 
+    /**
+     *
+     * @param command команда в виде строки расписания
+     */
     public WaitTime(String command) {
         this(CommandKey.WAIT_TIME, command);
     }
     
+    /**
+     *
+     * @param key ключ команды
+     * @param command команда в виде строки расписания
+     */
     public WaitTime(CommandKey key, String command) {
         super(key);
         this.time = ParameterParser.getDuration(command);
@@ -43,10 +56,23 @@ public class WaitTime extends Command implements ITime, IFade {
         }
     }
 
+    /**
+     *
+     * @param time время старта
+     * @param fadeOut фейд
+     * @param comment комментарий
+     */
     public WaitTime(Duration time, Fade fadeOut, String comment) {
         this(CommandKey.WAIT_TIME, time, fadeOut, comment);
     }
 
+    /**
+     *
+     * @param key ключ команды
+     * @param time время старта
+     * @param fadeOut фейд
+     * @param comment комментарий
+     */
     protected WaitTime(CommandKey key, Duration time, Fade fadeOut, String comment) {
         super(key);
         if (time == null) {
