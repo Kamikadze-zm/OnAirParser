@@ -60,8 +60,8 @@ class RegExps {
      */
     static Pattern fade() {
         //movie <0:42:36.60> 0:10:46.40 [0.12] H:\декабрь\16+\ДоРе Аллегрова.mpeg
-        //[ цифра или 2 цифры . 2 цифры ]
-        return Pattern.compile("\\[(\\d|\\d\\d)\\.\\d\\d\\]");
+        //[ цифра или 2 цифры . цифра или 2 цифры ]
+        return Pattern.compile("\\[(\\d|\\d\\d)\\.(\\d|\\d\\d)]");
     }
 
     /**

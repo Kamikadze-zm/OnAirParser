@@ -17,7 +17,11 @@ public class Fade {
     public Fade(String fade) {
         String[] parts = fade.split("(:|\\.)");
         this.ss = Integer.parseInt(parts[0]);
-        this.xx = Integer.parseInt(parts[1]);
+        int xx = Integer.parseInt(parts[1]);
+        if (parts[1].length() == 1) {
+            xx = xx * 10;
+        }
+        this.xx = xx;
         this.fade = calculateFadeDuration(ss, xx);
     }
 
