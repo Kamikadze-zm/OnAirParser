@@ -6,59 +6,41 @@ package ru.kamikadze_zm.onair.command.parameter;
  */
 public class Fade {
 
-    private final int ss;
-    private final int xx;
-    private final long fade;
+    private final double fade;
 
     /**
      *
-     * @param fade - строка формата ss.xx
+     * @param fade строка формата ss.xx
      */
     public Fade(String fade) {
-        String[] parts = fade.split("(:|\\.)");
-        this.ss = Integer.parseInt(parts[0]);
-        int xx = Integer.parseInt(parts[1]);
-        if (parts[1].length() == 1) {
-            xx = xx * 10;
-        }
-        this.xx = xx;
-        this.fade = calculateFadeDuration(ss, xx);
+        this.fade = Double.parseDouble(fade);
     }
 
     /**
      *
-     * @param ss секунды
-     * @param xx сотые секунды
+     * @param fade длительность исчезновения/появления в секундах
      */
-    public Fade(int ss, int xx) {
-        this.ss = ss;
-        this.xx = xx;
-        this.fade = calculateFadeDuration(ss, xx);
+    public Fade(double fade) {
+        this.fade = fade;
     }
 
     /**
      *
-     * @return Длительность исчезновения/появления в милисекундах
+     * @return Длительность исчезновения/появления в секундах
      */
-    public long getFade() {
+    public double getFade() {
         return fade;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append("[")
-                .append(ss)
-                .append(".")
-                .append(String.format("%02d", xx))
-                .append("]")
-                .toString();
+        return String.format("%.2f", fade);
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + (int) (this.fade ^ (this.fade >>> 32));
+        int hash = 7;
+        hash = 11 * hash + (int) (Double.doubleToLongBits(this.fade) ^ (Double.doubleToLongBits(this.fade) >>> 32));
         return hash;
     }
 
@@ -74,13 +56,9 @@ public class Fade {
             return false;
         }
         final Fade other = (Fade) obj;
-        if (this.fade != other.fade) {
+        if (Double.doubleToLongBits(this.fade) != Double.doubleToLongBits(other.fade)) {
             return false;
         }
         return true;
-    }
-
-    private static long calculateFadeDuration(int ss, int xx) {
-        return (ss * 100 + xx) * 10;
     }
 }

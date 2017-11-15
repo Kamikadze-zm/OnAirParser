@@ -4,7 +4,7 @@
     <groupId>ru.kamikadze_zm</groupId>
     <artifactId>onair-parser</artifactId>
     <name>OnAirParser</name>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
