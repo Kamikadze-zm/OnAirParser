@@ -1,5 +1,7 @@
 package ru.kamikadze_zm.onair.command.parameter;
 
+import java.util.Locale;
+
 /**
  *
  * Длительность исчезновения/появления
@@ -34,7 +36,7 @@ public class Fade {
 
     @Override
     public String toString() {
-        return String.format("%.2f", fade);
+        return String.format(Locale.US, "[%.2f]", fade);
     }
 
     @Override
