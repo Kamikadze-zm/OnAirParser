@@ -15,7 +15,7 @@ public abstract class TitleObj extends Command implements IFade {
 
     private static final String DEFAULT_DURATION = "0:00:00.01";
 
-    private final String objectName;
+    protected final String objectName;
     private final Duration duration;
     private final Fade fadeIn;
 
@@ -26,7 +26,7 @@ public abstract class TitleObj extends Command implements IFade {
      */
     public TitleObj(CommandKey key, String command) {
         super(key);
-        this.objectName = ParameterParser.getTitleObjName(command);
+        this.objectName = ParameterParser.getTitleObjName(command).trim();
         if (this.objectName == null) {
             throw new OnAirParserException("Отсутствует отсутствует название титровального объекта");
         }
@@ -45,7 +45,7 @@ public abstract class TitleObj extends Command implements IFade {
     /**
      *
      * @param key ключ команды
-     * @param objectName название титровального объекта в фигурных скобках {}
+     * @param objectName название титровального объекта
      * @param duration длительность
      * @param fadeIn фейд
      */
@@ -57,7 +57,7 @@ public abstract class TitleObj extends Command implements IFade {
         if (duration == null) {
             duration = new Duration(DEFAULT_DURATION);
         }
-        this.objectName = objectName;
+        this.objectName = objectName.trim();
         this.duration = duration;
         this.fadeIn = fadeIn;
     }
@@ -80,44 +80,11 @@ public abstract class TitleObj extends Command implements IFade {
     @Override
     public String toSheduleRow() {
         StringBuilder sb = new StringBuilder(commandKey.getKey()).append(" ");
-        sb.append(objectName).append(" ")
+        sb.append("{").append(objectName).append("} ")
                 .append(duration.toString());
         if (fadeIn != null) {
             sb.append(" ").append(fadeIn.toString());
         }
         return sb.toString();
     }
-
-//    @Override
-//    public int hashCode() {
-//        int hash = 5;
-//        hash = 11 * hash + Objects.hashCode(this.objectName);
-//        hash = 11 * hash + Objects.hashCode(this.duration);
-//        hash = 11 * hash + Objects.hashCode(this.fadeIn);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final TitleObj other = (TitleObj) obj;
-//        if (!Objects.equals(this.objectName, other.objectName)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.duration, other.duration)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.fadeIn, other.fadeIn)) {
-//            return false;
-//        }
-//        return true;
-//    }
 }

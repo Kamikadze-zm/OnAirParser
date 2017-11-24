@@ -1,5 +1,6 @@
 package ru.kamikadze_zm.onair.command;
 
+import java.util.Objects;
 import ru.kamikadze_zm.onair.OnAirParserException;
 import ru.kamikadze_zm.onair.command.parameter.Duration;
 import ru.kamikadze_zm.onair.command.parameter.Fade;
@@ -91,36 +92,28 @@ public class TitleMovie extends Command implements IFade {
         return sb.toString();
     }
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 7;
-//        hash = 73 * hash + Objects.hashCode(this.duration);
-//        hash = 73 * hash + Objects.hashCode(this.fadeIn);
-//        hash = 73 * hash + Objects.hashCode(this.fileName);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final TitleMovie other = (TitleMovie) obj;
-//        if (!Objects.equals(this.fileName, other.fileName)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.duration, other.duration)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.fadeIn, other.fadeIn)) {
-//            return false;
-//        }
-//        return true;
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.fileName);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TitleMovie other = (TitleMovie) obj;
+        if (!Objects.equals(this.fileName, other.fileName)) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -28,7 +28,7 @@ public class TitleObjLoad extends TitleObj {
 
     /**
      *
-     * @param objectName название титровального объекта в фигурных скобках {}
+     * @param objectName название титровального объекта
      * @param duration длительность
      * @param fadeIn фейд
      * @param fileName название файла
@@ -53,28 +53,30 @@ public class TitleObjLoad extends TitleObj {
         return super.toSheduleRow() + " " + fileName;
     }
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 5;
-//        hash = 37 * hash + Objects.hashCode(this.fileName);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final TitleObjLoad other = (TitleObjLoad) obj;
-//        if (!Objects.equals(this.fileName, other.fileName)) {
-//            return false;
-//        }
-//        return true;
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(super.objectName);
+        hash = 79 * hash + Objects.hashCode(this.fileName);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TitleObjLoad other = (TitleObjLoad) obj;
+        if (!Objects.equals(this.fileName, other.fileName) || !Objects.equals(this.objectName, other.objectName)) {
+            return false;
+        }
+        return true;
+    }
+
 }

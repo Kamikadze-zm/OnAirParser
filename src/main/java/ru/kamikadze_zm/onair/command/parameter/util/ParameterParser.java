@@ -122,8 +122,8 @@ public class ParameterParser {
     public static String getTitleObjName(String command) {
         Matcher matcher = RegExps.titleObjName().matcher(command);
         if (matcher.find()) {
-            int s = matcher.start();
-            int e = matcher.end();
+            int s = matcher.start() + 1;
+            int e = matcher.end() - 1;
             return command.substring(s, e);
         } else {
             return null;
