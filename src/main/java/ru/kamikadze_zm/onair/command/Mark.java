@@ -56,7 +56,8 @@ public class Mark extends Command {
     public String toSheduleRow() {
         //markstart {AdMark} 0 Начало рекламного блока
         StringBuilder sb = new StringBuilder(commandKey.getKey()).append(" ");
-        sb.append(markName).append(" 0 ");
+        sb.append("{").append(markName).append("} ")
+                .append(" 0 ");
         if (comment != null) {
             sb.append(comment);
         }

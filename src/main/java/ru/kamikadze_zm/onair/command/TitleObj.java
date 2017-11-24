@@ -28,7 +28,7 @@ public abstract class TitleObj extends Command implements IFade {
         super(key);
         this.objectName = ParameterParser.getTitleObjName(command).trim();
         if (this.objectName == null) {
-            throw new OnAirParserException("Отсутствует отсутствует название титровального объекта");
+            throw new OnAirParserException("Отсутствует название титровального объекта");
         }
         Duration duration = ParameterParser.getDuration(command);
         if (duration != null) {
