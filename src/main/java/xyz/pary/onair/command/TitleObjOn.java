@@ -1,7 +1,7 @@
 package xyz.pary.onair.command;
 
-import xyz.pary.command.parameter.Duration;
-import xyz.pary.command.parameter.Fade;
+import xyz.pary.onair.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Fade;
 
 /**
  *

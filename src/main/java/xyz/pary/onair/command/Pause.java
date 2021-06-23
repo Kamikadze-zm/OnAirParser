@@ -1,6 +1,6 @@
 package xyz.pary.onair.command;
 
-import xyz.pary.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Duration;
 import xyz.pary.onair.command.parameter.util.ParameterParser;
 
 /**

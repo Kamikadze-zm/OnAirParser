@@ -1,10 +1,10 @@
 package xyz.pary.onair.command;
 
 import xyz.pary.onair.OnAirParserException;
-import xyz.pary.command.parameter.Duration;
-import xyz.pary.command.parameter.Fade;
-import xyz.pary.command.parameter.IFade;
-import xyz.pary.command.parameter.ITime;
+import xyz.pary.onair.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Fade;
+import xyz.pary.onair.command.parameter.IFade;
+import xyz.pary.onair.command.parameter.ITime;
 import xyz.pary.onair.command.parameter.util.ParameterParser;
 
 /**

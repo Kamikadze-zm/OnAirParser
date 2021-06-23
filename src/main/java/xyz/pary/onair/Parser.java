@@ -27,7 +27,7 @@ import xyz.pary.onair.command.WaitFollow;
 import xyz.pary.onair.command.WaitOperator;
 import xyz.pary.onair.command.WaitTime;
 import xyz.pary.onair.command.WaitTimeActive;
-import xyz.pary.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Duration;
 
 /**
  *

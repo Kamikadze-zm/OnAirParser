@@ -1,4 +1,4 @@
-package xyz.pary.command.parameter;
+package xyz.pary.onair.command.parameter;
 
 public interface IDuration {
 

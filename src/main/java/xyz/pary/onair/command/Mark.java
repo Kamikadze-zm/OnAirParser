@@ -1,7 +1,7 @@
 package xyz.pary.onair.command;
 
 import xyz.pary.onair.OnAirParserException;
-import xyz.pary.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Duration;
 import xyz.pary.onair.command.parameter.util.ParameterParser;
 
 /**

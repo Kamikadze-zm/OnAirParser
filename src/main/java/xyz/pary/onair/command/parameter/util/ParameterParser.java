@@ -2,10 +2,10 @@ package xyz.pary.onair.command.parameter.util;
 
 import java.util.regex.Matcher;
 import xyz.pary.onair.command.Command.CommandKey;
-import xyz.pary.command.parameter.Duration;
-import xyz.pary.command.parameter.Fade;
-import xyz.pary.command.parameter.MarkIn;
-import xyz.pary.command.parameter.ParallelDuration;
+import xyz.pary.onair.command.parameter.Duration;
+import xyz.pary.onair.command.parameter.Fade;
+import xyz.pary.onair.command.parameter.MarkIn;
+import xyz.pary.onair.command.parameter.ParallelDuration;
 
 /**
  *
